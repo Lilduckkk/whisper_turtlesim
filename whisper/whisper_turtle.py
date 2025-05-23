@@ -20,7 +20,7 @@ class Whisper_Turtle:
         # 等待一小段时间让发布者连接到话题
         rospy.sleep(0.5)
     
-    def record_audio(self,duration=10, rate=48000, output_file="output.wav"):
+    def record_audio(self,duration=3, rate=16000, output_file="output.wav"):
         """调用 arecord 命令录制音频"""
         command = [
             "arecord",
@@ -120,9 +120,10 @@ class Whisper_Turtle:
 
     def run(self):
         """运行方法，调用录音和转录"""
-        self.record_audio(duration=3, rate=48000)
+        self.record_audio()
         self.transcribe_audio()
         self.publish_velocity_once()
+        
 if __name__ == '__main__':
     try:
         # 创建类的实例并发布速度
